@@ -1,1 +1,1 @@
-Sample repo for https://github.com/gohugoio/hugo/issues/{issue_nbr}
+Sample repo for https://discourse.gohugo.io/t/trying-to-inject-in-email-url/32939
