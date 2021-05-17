@@ -1,10 +1,23 @@
 {{ define "main" }}
   <h1>{{ .Title }}</h1>
+  {{ $tests := slice
+    (dict 
+      "label" "printf" 
+      "test" (printf `http://mysite.com/cms/#email_change_token=%s` `{{ .Token }}`)
+    )
+    (dict 
+      "label" "print" 
+      "test" (print `http://mysite.com/cms/#email_change_token=%s` `{{ .Token }}`)
+    )
+  }}
+  <div class="mx-auto max-w-4xl">
+    {{ range $tests }}
+    <a 
+      class="text-lg bg-blue-500"
+      href="{{ .test | safeJS }}">
+      {{ .label }}
+    </a>
+    {{ end }}
 
-  {{ .Content }}
-
-  {{ range .Pages.ByTitle }}
-    <a href="{{ .RelPermalink }}">{{ .RelPermalink }}</a>
-    <br>
-  {{ end }}
+  </div>
 {{ end }}
